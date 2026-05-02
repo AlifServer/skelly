@@ -1,5 +1,5 @@
 -- REXY HUB v1.0 — SELF-CONTAINED
--- Build: 2026-05-02 00:00:00
+-- Build: 2026-02-26 14:53:53
 -- Build ID: 36ae3bc8057b
 -- Rexy Hub
 -- ALL-IN-ONE — NO LOADSTRING, NO EXTERNAL URLS
@@ -102,7 +102,7 @@ do
     end)
 
     if not _bootClean then
-        warn("[RexyHub] [!] Anti-hook: hooks detected at load time!")
+        warn("[RexyHub] [!] Anti-hook bootstrap: hooks detected at load time!")
     end
 
     -- Expose for all modules
@@ -126,7 +126,7 @@ local _modules = {}
 _modules["security"] = function()
     -- Module: security | SHA: c9e5ad457a0a1584
     --[[
-        Rexy Hub Security Module v1.0 — ANTI-HOOK / ANTI-TAMPER
+        Rexy Hub Security v1.0 — ANTI-HOOK / ANTI-TAMPER
         Centralized security for free script distribution.
         Function integrity, environment checks, metamethod detection,
         heartbeat integrity, silent degrade
@@ -434,8 +434,8 @@ _modules["utils"] = function()
     
     -- Constants
     Utils.API_BASE = "https://keyserver.nexusdevs.fun"
-    Utils.KEY_FILE = "RexyHub/Data/RexyHub.nxs"
-    Utils.STATS_FILE = "RexyHub/Data/RexyHub_Stats.nxs"
+    Utils.KEY_FILE = "Nexus/Data/Rexy Hub.nxs"
+    Utils.STATS_FILE = "Nexus/Data/Rexy Hub_Stats.nxs"
     Utils.CLIENT_VERSION = "1.0"
     Utils.AUTH_URL = Utils.API_BASE -- Alias used by debug share UI
     
@@ -515,7 +515,7 @@ _modules["utils"] = function()
                 end
             end
     
-            print("[RexyHub] [+] Workspace folders initialized")
+            print("[Rexy Hub] [+] Workspace folders initialized")
         end)
     end
     
@@ -802,7 +802,7 @@ _modules["utils"] = function()
             },
             thumbnail = { url = data.thumbnail or Utils.NEXUS_LOGO },
             footer = {
-                text = "Rexy Hub v" .. Utils.CLIENT_VERSION .. " | By: Ryu & Cuakcer",
+                text = "Rexy Hub v" .. Utils.CLIENT_VERSION .. " | Rexy Hub",
                 icon_url = Utils.NEXUS_LOGO
             },
             timestamp = os.date("!%Y-%m-%dT%H:%M:%SZ")
@@ -933,7 +933,7 @@ _modules["utils"] = function()
         return Utils.sendWebhook(webhookUrl, {
             components = {
                 container({
-                    textDisplay("# ▶️ REXY HUB STARTED"),
+                    textDisplay("# ▶️ NEXUSBOUNTY STARTED"),
                     separator(1, true),
                     section(
                         "**Fruit:** `" .. (config.Fruit or "T-Rex") .. "`\n" ..
@@ -943,7 +943,7 @@ _modules["utils"] = function()
                         Utils.NEXUS_LOGO
                     ),
                     separator(1, true),
-                    textDisplay("-# Rexy Hub v" .. Utils.CLIENT_VERSION .. " • Blox Fruits"),
+                    textDisplay("-# Rexy Hub v" .. Utils.CLIENT_VERSION .. " • Blox Fruits • Rexy Hub"),
                 }, 5763719), -- Green accent
             }
         })
@@ -973,7 +973,7 @@ _modules["utils"] = function()
                     -- Auto-migrate v1 to v2 format
                     if err == "migrated_from_v1" then
                         Utils.saveKey(decrypted)
-                        print("[RexyHub] [+] Key file migrated to NXS v2 format")
+                        print("[Rexy Hub] [+] Key file migrated to NXS v2 format")
                     end
                 end
             end
@@ -1023,10 +1023,10 @@ _modules["utils"] = function()
                     if err == "migrated_from_v1" then
                         Utils._statsCache = stats
                         Utils._writeStatsToDisk(stats)
-                        print("[RexyHub] [+] Stats file migrated to NXS v2 format")
+                        print("[Rexy Hub] [+] Stats file migrated to NXS v2 format")
                     end
                 else
-                    print("[RexyHub] [!] Stats file corrupted: " .. (err or "unknown"))
+                    print("[Rexy Hub] [!] Stats file corrupted: " .. (err or "unknown"))
                 end
             end
         end)
@@ -1451,7 +1451,7 @@ _modules["utils"] = function()
         local writeFile = writefile or function() end
     
         if isFile(soundFile) then
-            print("[RexyHub] [*] Sound already cached")
+            print("[Rexy Hub] [*] Sound already cached")
             return soundFile
         end
     
@@ -1464,11 +1464,11 @@ _modules["utils"] = function()
             pcall(function()
                 writeFile(soundFile, content)
             end)
-            print("[RexyHub] [+] Sound downloaded and cached")
+            print("[Rexy Hub] [+] Sound downloaded and cached")
             return soundFile
         end
     
-        print("[RexyHub] [!] Failed to download sound")
+        print("[Rexy Hub] [!] Failed to download sound")
         return nil
     end
     
@@ -1515,7 +1515,7 @@ _modules["utils"] = function()
             end)
         end)
     
-        print("[RexyHub] [>] Playing startup sound")
+        print("[Rexy Hub] [>] Playing startup sound")
         return true
     end
     
@@ -1853,7 +1853,7 @@ end
 _modules["config"] = function()
     -- Module: config | SHA: 7370ab45e28aca46
     --[[
-        Rexy Hub Configuration Module v1.0
+        Rexy Hub Config v1.0
         User Config: Fruit, Region, Faction, StartupSound, Webhook, Background
         Persistent config with NXS v2 format and auto-migration
     ]]
@@ -2105,7 +2105,7 @@ _modules["config"] = function()
         -- Save the merged config
         Config.saveToFile()
     
-        print("[RexyHub] [+] Config initialized")
+        print("[Rexy Hub] [+] Config initialized")
         return finalConfig
     end
     
@@ -2149,10 +2149,10 @@ _modules["config"] = function()
     
         if not fs.fileExists(Config.CONFIG_FILE) then
             -- Try to migrate from old .nxs file if it exists
-            local oldFile = "RexyHub/Data/RexyHub_Config.nxs"
+            local oldFile = "Nexus/Data/Rexy Hub_Config.nxs"
             if fs.fileExists(oldFile) then
                 -- Old format can't be read (encryption funcs removed), treat as first run
-                print("[RexyHub] [!] Old .nxs config found, migrating to JSON format")
+                print("[Rexy Hub] [!] Old .nxs config found, migrating to JSON format")
             end
             return nil, true
         end
@@ -2166,7 +2166,7 @@ _modules["config"] = function()
         if success and type(decoded) == "table" then
             config = decoded
         else
-            print("[RexyHub] [!] Config file corrupted, using defaults")
+            print("[Rexy Hub] [!] Config file corrupted, using defaults")
         end
     
         return config, isFirstRun
@@ -2295,29 +2295,23 @@ _modules["config"] = function()
 end
 
 _modules["auth"] = function()
-    --[[
-        Rexy Hub Auth Module v1.0
-        Key system removed — open access, no key required.
-    ]]
-
+    -- Rexy Hub — no key system, open access
     local Auth = {}
     Auth.IsAuthenticated = false
-    Auth.KeyData         = nil
-
+    Auth.KeyData = nil
     local Utils = nil
 
     function Auth.init(utilsModule)
         Utils = utilsModule
-        -- Instantly authenticated — no key required
         Auth.IsAuthenticated = true
         Auth.KeyData = { isFreeKey = false, isPremium = true, discordLinked = false }
     end
 
-    function Auth.isAuthenticated()    return Auth.IsAuthenticated end
-    function Auth.isFreeKey()          return false end
-    function Auth.isPremium()          return true  end
-    function Auth.isDiscordLinked()    return false end
-    function Auth.getRemainingTime()   return 0     end
+    function Auth.isAuthenticated()  return Auth.IsAuthenticated end
+    function Auth.isFreeKey()        return false end
+    function Auth.isPremium()        return true  end
+    function Auth.isDiscordLinked()  return false end
+    function Auth.getRemainingTime() return 0     end
     function Auth.logout()
         Auth.IsAuthenticated = false
         Auth.KeyData = nil
@@ -2984,7 +2978,7 @@ _modules["ui"] = function()
         end)
         
         getKeyBtn.MouseButton1Click:Connect(function()
-            -- (key page removed — no key system)
+            -- key page removed
             -- Visual feedback
             local originalText = getKeyBtn.Text
             local originalColor = getKeyBtn.TextColor3
@@ -3018,13 +3012,13 @@ _modules["ui"] = function()
             local spinner = createLoadingSpinner(validateBtn, 20, Colors.Text)
             spinner.Position = UDim2.new(0.5, 0, 0.5, 0)
             
-            -- No key system — auto-succeed immediately
+            -- No key system — auto pass
             if spinner then spinner:Destroy() end
             status.Text = "✓ Authenticated"
             status.TextColor3 = Colors.Success
             pulseElement(status, Colors.Success)
             validateBtn.Text = "✓"
-            task.wait(0.3)
+            task.wait(0.5)
             if onSuccess then onSuccess() end
         end)
         
@@ -3527,6 +3521,9 @@ _modules["ui"] = function()
         -- Fruit selector
         local fruitList = Config.getFruitList()
     
+        for i, fruit in ipairs(fruitList) do
+    
+        end
     
         createEnhancedDropdownRow(content, "Fruit", fruitList, Config.get("Fruit"), function(val)
             Config.set("Fruit", val)
@@ -3534,6 +3531,9 @@ _modules["ui"] = function()
         
         -- Faction selector
     
+        for i, faction in ipairs(Config.FACTIONS) do
+    
+        end
     
         createEnhancedDropdownRow(content, "Faction", Config.FACTIONS, Config.get("Faction"), function(val)
             Config.set("Faction", val)
@@ -3543,6 +3543,9 @@ _modules["ui"] = function()
         
         -- Region selector
     
+        for i, region in ipairs(Config.REGIONS) do
+    
+        end
     
         createEnhancedDropdownRow(content, "Region", Config.REGIONS, Config.get("Region"), function(val)
             Config.set("Region", val)
@@ -3563,7 +3566,7 @@ _modules["ui"] = function()
         createSectionLabel(content, "Other", 9)
         
         -- StartupSound toggle
-        createToggleRow(content, "Startup Sound", Config.get("StartupSound") ~= false, function(val)
+        createToggleRow(content, "Startup Sound", Config.get("v4Sound"), function(val)
             Config.set("StartupSound", val)
         end, 10)
         
@@ -3965,7 +3968,7 @@ _modules["ui"] = function()
         headerContainer.Size = UDim2.new(1, -p*2, 0, 24)
         headerContainer.Parent = dashboard
         
-        local header = createText(headerContainer, "Rexy Hub v1.0", {
+        local header = createText(headerContainer, "Rexy Hub v6.5", {
             position = UDim2.new(0, 0, 0, 0),
             size = UDim2.new(1, -30, 1, 0),
             variant = "Title",
@@ -4339,20 +4342,20 @@ _modules["ui"] = function()
         
         -- Cleanup existing
         pcall(function()
-            if lp.PlayerGui:FindFirstChild("RexyHubUI") then
-                lp.PlayerGui.RexyHubUI:Destroy()
+            if lp.PlayerGui:FindFirstChild("Rexy HubUI") then
+                lp.PlayerGui.Rexy HubUI:Destroy()
             end
-            if CoreGui:FindFirstChild("RexyHubUI") then
-                CoreGui.RexyHubUI:Destroy()
+            if CoreGui:FindFirstChild("Rexy HubUI") then
+                CoreGui.Rexy HubUI:Destroy()
             end
-            if Lighting:FindFirstChild("RexyHubBlur") then
-                Lighting.RexyHubBlur:Destroy()
+            if Lighting:FindFirstChild("Rexy HubBlur") then
+                Lighting.Rexy HubBlur:Destroy()
             end
         end)
         
         -- Create ScreenGui
         local screenGui = Instance.new("ScreenGui")
-        screenGui.Name = "RexyHubUI"
+        screenGui.Name = "Rexy HubUI"
         screenGui.ResetOnSpawn = false
         screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
         screenGui.IgnoreGuiInset = true
@@ -4502,7 +4505,7 @@ _modules["ui"] = function()
         versionLabel.Position = UDim2.new(0.5, 0, 1, -15)
         versionLabel.Size = UDim2.new(0, 200, 0, 14)
         versionLabel.Font = Enum.Font.Gotham
-        versionLabel.Text = "Rexy Hub v1.0"
+        versionLabel.Text = "Rexy Hub v6.5"
         versionLabel.TextColor3 = Color3.fromRGB(60, 60, 90)
         versionLabel.TextSize = 10
         versionLabel.TextTransparency = 1
@@ -4681,7 +4684,7 @@ _modules["ui"] = function()
         
         -- Blur effect
         local blur = Instance.new("BlurEffect")
-        blur.Name = "RexyHubBlur"
+        blur.Name = "Rexy HubBlur"
         blur.Size = 0
         blur.Parent = Lighting
         UI.Blur = blur
@@ -5862,8 +5865,8 @@ _modules["ui"] = function()
         
         if UI.Elements.serverHopBtn then
             UI.Elements.serverHopBtn.MouseButton1Click:Connect(function()
-                if getgenv().RexyHub and getgenv().RexyHub.serverHop then
-                    getgenv().RexyHub.serverHop()
+                if getgenv().Rexy Hub and getgenv().Rexy Hub.serverHop then
+                    getgenv().Rexy Hub.serverHop()
                 end
             end)
         end
@@ -5872,8 +5875,8 @@ _modules["ui"] = function()
             UI.Elements.stopBtn.MouseButton1Click:Connect(function()
                 -- Stop script but keep GUI alive
                 getgenv().RexyHubShuttingDown = true
-                if getgenv().RexyHub then
-                    getgenv().RexyHub.Running = false
+                if getgenv().Rexy Hub then
+                    getgenv().Rexy Hub.Running = false
                 end
                 UI.Elements.stopBtn.Text = "Stopped"
                 UI.Elements.stopBtn.BackgroundColor3 = Color3.fromRGB(90, 90, 105)
@@ -6141,7 +6144,7 @@ _modules["ui"] = function()
         
         local island = UI.DynamicIsland
         if not island or not island.Parent then
-            print("[RexyHub]", text)
+            print("[Rexy Hub]", text)
             return
         end
         
@@ -6357,7 +6360,7 @@ _modules["ui"] = function()
         end
         UI.Connections = {}
         
-        print("[RexyHub] [*] UI connections cleaned up")
+        print("[Rexy Hub] [*] UI connections cleaned up")
         
         pcall(function() 
             tween(UI.Blur, {Size = 0}, 0.3)
@@ -6404,16 +6407,16 @@ _modules["ui"] = function()
     
     function UI.killAllGraphics()
         pcall(function()
-            -- Remove all ScreenGuis except RexyHubUI
+            -- Remove all ScreenGuis except Rexy HubUI
             for _, gui in ipairs(lp.PlayerGui:GetChildren()) do
-                if gui:IsA("ScreenGui") and gui.Name ~= "RexyHubUI" then
+                if gui:IsA("ScreenGui") and gui.Name ~= "Rexy HubUI" then
                     pcall(function() gui:Destroy() end)
                 end
             end
             -- Also check CoreGui (if sethiddenproperty exists)
             pcall(function()
                 for _, gui in ipairs(CoreGui:GetChildren()) do
-                    if gui:IsA("ScreenGui") and gui.Name ~= "RexyHubUI" and gui.Name ~= "RobloxGui" then
+                    if gui:IsA("ScreenGui") and gui.Name ~= "Rexy HubUI" and gui.Name ~= "RobloxGui" then
                         pcall(function() gui.Enabled = false end)
                     end
                 end
@@ -6429,7 +6432,7 @@ _modules["ui"] = function()
             -- Remove ALL PostEffect objects (Bloom, BlurEffect, ColorCorrection, DepthOfField, SunRays, etc.)
             pcall(function()
                 for _, effect in ipairs(Lighting:GetChildren()) do
-                    if effect:IsA("PostEffect") and effect.Name ~= "RexyHubBlur" then
+                    if effect:IsA("PostEffect") and effect.Name ~= "Rexy HubBlur" then
                         pcall(function() effect:Destroy() end)
                     end
                 end
@@ -6667,8 +6670,8 @@ _modules["ui"] = function()
             local duration = notif.duration or 3.5
             local icon = notif.icon or autoIcon(text)
     
-            -- Strip the "[RexyHub]" prefix (the title is redundant in-island)
-            text = text:gsub("^%[RexyHub%]%s*", ""):gsub("^Rexy Hub%s*", ""):gsub("^RexyHub%s*", "")
+            -- Strip the "[Rexy Hub]" / "Rexy Hub" prefix (the title is redundant in-island)
+            text = text:gsub("^%[Rexy Hub%]%s*", ""):gsub("^Rexy Hub%s*", "")
     
             local island = UI.DynamicIsland
             if not island or not island.Parent then
@@ -6882,7 +6885,7 @@ end
 _modules["main"] = function()
     -- Module: main | SHA: 5da4ec19e7c28208
     --[[
-        Rexy Hub Main v1.0 — HYPER MODE
+        Rexy Hub Main v1.0 — HYPER MODE (Forked from NexusPremium HyperLib v7.2)
         Aggressive hyper-speed combat module
         ONLY Fruit, Faction, Region configurable via GUI
         ALL combat constants/offsets HARDCODED — do NOT change
@@ -6969,11 +6972,11 @@ _modules["main"] = function()
     -- ============================================
     function Main.start()
         Main.Running = true
-        print("[RexyHub] [HYPER] Main.start() called")
+        print("[Rexy Hub] [HYPER] Main.start() called")
         task.spawn(function()
             local ok, err = xpcall(function()
     
-            print("[RexyHub] [HYPER] task.spawn started")
+            print("[Rexy Hub] [HYPER] task.spawn started")
     
             local Players = game:GetService("Players")
             local RunService = game:GetService("RunService")
@@ -6987,13 +6990,13 @@ _modules["main"] = function()
             local SoundService = game:GetService("SoundService")
             local VirtualInputManager = game:GetService("VirtualInputManager")
     
-            print("[RexyHub] [HYPER] Services loaded")
+            print("[Rexy Hub] [HYPER] Services loaded")
     
             repeat task.wait() until game:IsLoaded()
     
             local lp = Players.LocalPlayer or Players:GetPropertyChangedSignal("LocalPlayer"):Wait() and Players.LocalPlayer
     
-            print("[RexyHub] [HYPER] LocalPlayer: " .. tostring(lp))
+            print("[Rexy Hub] [HYPER] LocalPlayer: " .. tostring(lp))
     
             local _env = getgenv()
             _env.RexyHubShuttingDown = false
@@ -7014,7 +7017,7 @@ _modules["main"] = function()
                 end)
             end
     
-            print("[RexyHub] [HYPER] Stats synced")
+            print("[Rexy Hub] [HYPER] Stats synced")
     
             -- Kick detection / auto-rejoin
             pcall(function()
@@ -7027,7 +7030,7 @@ _modules["main"] = function()
                 end)
             end)
     
-            print("[RexyHub] [HYPER] Kick detection setup")
+            print("[Rexy Hub] [HYPER] Kick detection setup")
     
             -- ============================================
             -- TEAM SELECTION (only if character not yet spawned)
@@ -7035,7 +7038,7 @@ _modules["main"] = function()
             -- and replaced with "Main", so we MUST NOT try to find it
             -- ============================================
             if not (lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")) then
-                print("[RexyHub] [HYPER] Character not spawned — handling team selection")
+                print("[Rexy Hub] [HYPER] Character not spawned — handling team selection")
                 local playerGui = lp:WaitForChild("PlayerGui")
                 local mainGui = playerGui:WaitForChild("Main (minimal)")
     
@@ -7082,10 +7085,10 @@ _modules["main"] = function()
                     hrp = char:FindFirstChild("HumanoidRootPart")
                 until hrp
             else
-                print("[RexyHub] [HYPER] Character already exists — skipping team selection")
+                print("[Rexy Hub] [HYPER] Character already exists — skipping team selection")
             end
     
-            print("[RexyHub] [HYPER] Character ready — initializing combat systems")
+            print("[Rexy Hub] [HYPER] Character ready — initializing combat systems")
     
             -- ============================================
             -- CAMERA SHAKE DISABLE (non-blocking)
@@ -7174,7 +7177,7 @@ _modules["main"] = function()
                                 local hrp = char:FindFirstChild("HumanoidRootPart")
                                 if hrp then
                                     local pos = hrp.Position
-                                    hrp.CFrame = CFrame.new(pos.X, pos.Y + ESCAPE_HEIGHT, pos.Z)  -- escape snap (intentional)
+                                    hrp.CFrame = CFrame.new(pos.X, pos.Y + ESCAPE_HEIGHT, pos.Z)
                                 end
                             end
                         end)
@@ -7568,20 +7571,7 @@ _modules["main"] = function()
                                         predictedPos = currentPos + (calculatedVelocity * PREDICTION_TIME)
                                     end
                                 end
-                                -- Safer mode: TweenService smooth glide (less detectable than raw CFrame snap)
-                                local destCF  = CFrame.new(predictedPos) * CFrame.new(0, YOffset, 0)
-                                local dist    = (hrp.Position - predictedPos).Magnitude
-                                if dist > 20 then
-                                    -- Large gap — snap instantly (target moved far)
-                                    hrp.CFrame = destCF
-                                else
-                                    -- Close tracking — smooth tween (looks natural)
-                                    game:GetService("TweenService"):Create(
-                                        hrp,
-                                        TweenInfo.new(0.08, Enum.EasingStyle.Linear),
-                                        { CFrame = destCF }
-                                    ):Play()
-                                end
+                                hrp.CFrame = CFrame.new(predictedPos) * CFrame.new(0, YOffset, 0)
                             end
                         else
                             if PlayerPositionHistory[SelectedPlayer] then
@@ -7676,12 +7666,12 @@ _modules["main"] = function()
                 end)
             end)
     
-            print("[RexyHub] [HYPER] All systems initialized — starting combat loops")
+            print("[Rexy Hub] [HYPER] All systems initialized — starting combat loops")
     
             -- ============================================
             -- CONTINUOUS M1 ATTACK LOOP — NEVER STOPS
             -- ============================================
-            print("[RexyHub] [HYPER] Starting M1 attack loop")
+            print("[Rexy Hub] [HYPER] Starting M1 attack loop")
             task.spawn(function()
                 while true do
                     task.wait(0.01)
@@ -7695,7 +7685,7 @@ _modules["main"] = function()
             -- ============================================
             -- TARGET CYCLE LOOP — aggressive 0.4s cycle
             -- ============================================
-            print("[RexyHub] [HYPER] Starting target cycle loop")
+            print("[Rexy Hub] [HYPER] Starting target cycle loop")
             task.spawn(function()
                 task.wait(3)
                 local currentIndex = 1
@@ -7752,7 +7742,7 @@ _modules["main"] = function()
             -- ============================================
             -- T-REX COMBAT LOOP
             -- ============================================
-            print("[RexyHub] [HYPER] Starting T-Rex combat loop")
+            print("[Rexy Hub] [HYPER] Starting T-Rex combat loop")
             local Buso = { "Buso" }
             local SafeZoneActive = false
             task.spawn(function()
@@ -7807,9 +7797,8 @@ _modules["main"] = function()
             -- ============================================
             -- MAIN UTILITY LOOP (PvP, antimover, v4) — keeps thread alive
             -- ============================================
-            print("[RexyHub] [HYPER] Starting PvP/utility loop — SCRIPT IS NOW FULLY ACTIVE")
-            while true do
-                task.wait(1)
+            print("[Rexy Hub] [HYPER] Starting PvP/utility loop — SCRIPT IS NOW FULLY ACTIVE")
+            while wait(1) do
                 pcall(function()
                     PvpEnable()
                     antimover()
@@ -7821,7 +7810,7 @@ _modules["main"] = function()
                 return tostring(e) .. "\n" .. debug.traceback()
             end)
             if not ok then
-                warn("[RexyHub] [HYPER] FATAL ERROR: " .. tostring(err))
+                warn("[Rexy Hub] [HYPER] FATAL ERROR: " .. tostring(err))
             end
         end) -- End task.spawn
     end
@@ -7842,7 +7831,7 @@ _modules["main"] = function()
             pcall(function() Utils.flushStats() end)
         end
     
-        print("[RexyHub] [*] Script stopped - all connections cleaned up")
+        print("[Rexy Hub] [*] Script stopped - all connections cleaned up")
     end
     
     return Main
@@ -7891,16 +7880,16 @@ local function loadModule(name)
     if _modules[name] then
         local ok, result = pcall(_modules[name])
         if ok then
-            print("[RexyHub] [+] Module loaded: " .. name)
+            print("[Rexy Hub] [+] Module loaded: " .. name)
             return result
         else
-            local errMsg = "[RexyHub] [!] Module error (" .. name .. "): " .. tostring(result)
+            local errMsg = "[Rexy Hub] [!] Module error (" .. name .. "): " .. tostring(result)
             warn(errMsg)
             table.insert(_loadErrors, { module = name, error = tostring(result), time = os.time() })
             error(errMsg)
         end
     end
-    local errMsg = "[RexyHub] [!] Module not found: " .. name
+    local errMsg = "[Rexy Hub] [!] Module not found: " .. name
     warn(errMsg)
     table.insert(_loadErrors, { module = name, error = "not found", time = os.time() })
     error(errMsg)
@@ -7910,7 +7899,7 @@ end
 -- INITIALIZATION
 -- ============================================
 
-print("[RexyHub] Loading modules...")
+print("[Rexy Hub] Loading modules...")
 
 local Utils = loadModule("utils")
 local Config = loadModule("config")
@@ -7918,40 +7907,46 @@ local Auth = loadModule("auth")
 local UI = loadModule("ui")
 local Main = loadModule("main")
 
-print("[RexyHub] Modules loaded!")
+print("[Rexy Hub] Modules loaded!")
 
 -- Initialize
 Config.init()
 Auth.init(Utils)
 -- Main.init deferred until auth
 
-print("[RexyHub] Config: Fruit=" .. Config.get("Fruit") .. ", Region=" .. Config.get("Region") .. ", Faction=" .. Config.get("Faction"))
+print("[Rexy Hub] Config: Fruit=" .. Config.get("Fruit") .. ", Region=" .. Config.get("Region") .. ", Faction=" .. Config.get("Faction"))
 
 -- ============================================
 -- INITIALIZE UI (KEY SYSTEM)
 -- ============================================
 
-print("[RexyHub] Initializing UI...")
+print("[Rexy Hub] Initializing UI...")
 
 -- Init UI first so Key System shows up
 UI.init(Utils, Config, Auth)
 
-print("[RexyHub] UI ready! Waiting for authentication...")
+print("[Rexy Hub] UI ready! Waiting for authentication...")
 
 -- ============================================
 -- MAIN LOGIC LOOP
 -- ============================================
 
 task.spawn(function()
-    -- Auth is instant (no key system)
-    -- 2. Init Main Logic
+    -- 1. Wait for Auth
+    while not Auth.isAuthenticated() do
+        task.wait(0.5)
+    end
+    
+    print("[Rexy Hub] Authenticated! Loading character...")
+    
+    -- 2. Init Main Logic (Strictly after Auth)
     Main.init(Utils, Config, UI)
     
     -- 3. Wait for Configuration (UI) to be set by the user or via getgenv().Config
     while not Config.isConfigured() do
         task.wait(0.5)
     end
-    print("[RexyHub] Fully configured! Proceeding...")
+    print("[Rexy Hub] Fully configured! Proceeding...")
 
     -- 4. Wait for Character & Select Team
     local playerGui
@@ -8008,7 +8003,7 @@ task.spawn(function()
         end
         
         if attempt > 10 then
-            print("[RexyHub] [!] Auto-team selection taking too long. Click it manually!")
+            print("[Rexy Hub] [!] Auto-team selection taking too long. Click it manually!")
         end
     until (char and hum) or getgenv().RexyHubShuttingDown
 
@@ -8018,42 +8013,11 @@ task.spawn(function()
         hrp = char:FindFirstChild("HumanoidRootPart")
     until hrp
 
-    print("[RexyHub] Character loaded! Starting main logic...")
+    print("[Rexy Hub] Character loaded! Starting main logic...")
     
     -- 3. Start Main Logic
     Main.start()
 end)
-
--- ============================================
--- AUTO REJOIN AFTER KICK / DISCONNECT
--- ============================================
-task.spawn(function()
-    local TeleportService = game:GetService("TeleportService")
-    local lp2 = game:GetService("Players").LocalPlayer
-
-    -- When local player leaves the game (kicked/disconnected), attempt rejoin
-    lp2.AncestryChanged:Connect(function(_, parent)
-        if not parent then
-            task.wait(3)
-            pcall(function()
-                TeleportService:Teleport(game.PlaceId)
-            end)
-        end
-    end)
-
-    -- Handle teleport-kick events
-    local ok, _ = pcall(function()
-        game:GetService("TeleportService").TeleportInitFailed:Connect(function()
-            task.wait(3)
-            pcall(function()
-                TeleportService:Teleport(game.PlaceId)
-            end)
-        end)
-    end)
-
-    print("[RexyHub] [+] Auto-rejoin enabled")
-end)
-
 
 -- ============================================
 -- KEYBIND
@@ -8069,6 +8033,6 @@ UserInputService.InputBegan:Connect(function(input, processed)
     end
 end)
 
-print("[RexyHub] Ready! Press RightControl to toggle UI.")
+print("[Rexy Hub] Ready! Press RightControl to toggle UI.")
 -- BUILD SHA-256: 0b9c1b6f795da49a2c0eec376e83d1e7bd5a065489d9a0c33e9d3c46a3243625
 -- END REXY HUB v1.0
